@@ -9,7 +9,7 @@
     <el-form-item label="業務員" prop="seller.name">
       <label>{{ form.seller?.name }}</label>
     </el-form-item>
-    <el-form-item label="聯絡人姓名" prop="name">
+    <el-form-item label="聯絡人Name" prop="name">
       <label>{{ form.name }}</label>
     </el-form-item>
     <el-form-item label="聯絡人稱謂" prop="contractTitle">
@@ -18,7 +18,7 @@
     <el-form-item label="聯絡人地區" prop="contractArea">
       <label>{{ form.contractArea }}</label>
     </el-form-item>
-    <el-form-item label="聯絡人電話" prop="phone">
+    <el-form-item label="聯絡人Phone" prop="phone">
       <label>{{ form.phone }}</label>
     </el-form-item>
     <el-form-item label="聯絡人Email" prop="email">
@@ -60,8 +60,8 @@
       <el-button color="#3D9A9F" :icon="Document" @click="downloadExcel">PDF 下載</el-button>
     </el-form-item>
     <div class="text-right">
-      <el-button @click="emit('toggleModal', false)">關閉</el-button>
-      <el-button v-if="props.type!=='view'" type="primary" @click="store.dispatch('saveData', { http, path, form, ref: formRef })">儲存</el-button>
+      <el-button @click="emit('toggleModal', false)">Close</el-button>
+      <el-button v-if="props.type!=='view'" type="primary" @click="store.dispatch('saveData', { http, path, form, ref: formRef })">Save</el-button>
     </div>
   </el-form>
 </template>

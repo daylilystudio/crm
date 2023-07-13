@@ -8,10 +8,10 @@
             <span v-else-if="scope.row.major">＊</span>
           </div>
           <el-form-item :prop="'tableData.' + scope.$index + '.info'" :rules='form.rules.info'>
-            <el-input v-model="scope.row.info" :placeholder="'請輸入'+labelTitle" v-if="canSave" />
+            <el-input v-model="scope.row.info" :placeholder="'Enter '+labelTitle" v-if="canSave" />
             <span v-else>{{scope.row.info}}</span>
           </el-form-item>
-          <el-form-item label="備註" :prop="'tableData.' + scope.$index + '.remark'" :rules='form.rules.remark'>
+          <el-form-item label="Remark" :prop="'tableData.' + scope.$index + '.remark'" :rules='form.rules.remark'>
             <el-input v-model="scope.row.remark" v-if="canSave" />
             <span v-else>{{scope.row.remark}}</span>
           </el-form-item>
@@ -20,7 +20,7 @@
       </el-table-column>
     </el-table>
     <a v-if="canSave" @click="addTable" class="inline-flex items-center cursor-pointer">
-      <el-button :icon="Plus" type="primary" class="mr-1" size="small" plain round />新增一筆
+      <el-button :icon="Plus" type="primary" class="mr-1" size="small" plain round />Add a new one
     </a>
   </el-form>
 </template>

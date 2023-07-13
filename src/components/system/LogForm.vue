@@ -9,17 +9,17 @@
     <el-form-item label="功能" prop="pattenName">
       <label>{{ form.pattenName }}</label>
     </el-form-item>
-    <el-form-item label="操作人員" prop="opName">
+    <el-form-item label="Operate人員" prop="opName">
       <label>{{ form.opName }}</label>
     </el-form-item>
-    <el-form-item label="操作時間" prop="opTime">
+    <el-form-item label="Operate時間" prop="opTime">
       <label>{{ formatDateYMDhms(form.opTime) }}</label>
     </el-form-item>
     <el-form-item label="資料內容" prop="content">
       <pre v-if="form.content" class="whitespace-pre-wrap">{{ JSON.stringify(JSON.parse(form.content), null, 2) }}</pre>
     </el-form-item>
     <div class="text-right">
-      <el-button @click="emit('toggleModal', false)">關閉</el-button>
+      <el-button @click="emit('toggleModal', false)">Close</el-button>
     </div>
   </el-form>
 </template>

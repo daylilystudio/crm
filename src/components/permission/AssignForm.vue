@@ -2,10 +2,10 @@
   <el-form class="!-mt-4" ref="formRef" :model="form" v-loading="store.state.progressing" label-width="90px">
     <template v-if="form.company">
       <el-divider><el-icon><office-building/></el-icon> 公司資訊</el-divider>
-      <el-form-item label="公司代號" prop="company.code">
+      <el-form-item label="Company ID" prop="company.code">
         <label>{{ form.company.code }}</label>
       </el-form-item>
-      <el-form-item label="公司名稱" prop="company.name">
+      <el-form-item label="Company Name" prop="company.name">
         <label>{{ form.company.name }}</label>
       </el-form-item>
     </template>
@@ -14,7 +14,7 @@
       <el-form-item label="人員代號" prop="personnel.code">
         <label>{{ form.personnel.code }}</label>
       </el-form-item>
-      <el-form-item label="人員名稱" prop="personnel.name">
+      <el-form-item label="人員Name" prop="personnel.name">
         <label>{{ form.personnel.name }}</label>
       </el-form-item>
     </template>
@@ -23,7 +23,7 @@
       <el-form-item label="角色代號" prop="role.code">
         <label>{{ form.role.code }}</label>
       </el-form-item>
-      <el-form-item label="角色名稱" prop="role.name">
+      <el-form-item label="角色Name" prop="role.name">
         <label>{{ form.role.name }}</label>
       </el-form-item>
     </template>
@@ -62,7 +62,7 @@
             <span>{{scope.row.code}}</span>
           </template>
         </el-table-column>
-        <el-table-column label="角色名稱">
+        <el-table-column label="角色Name">
           <template #default="scope">
             <span>{{scope.row.name}}</span>
           </template>
@@ -70,8 +70,8 @@
       </el-table>
     </template>
     <div class="text-right">
-      <el-button @click="emit('toggleModal', false)">關閉</el-button>
-      <el-button v-if="props.type!=='view'" type="primary" @click="saveAssign()">儲存</el-button>
+      <el-button @click="emit('toggleModal', false)">Close</el-button>
+      <el-button v-if="props.type!=='view'" type="primary" @click="saveAssign()">Save</el-button>
     </div>
   </el-form>
 </template>

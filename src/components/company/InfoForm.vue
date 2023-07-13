@@ -1,70 +1,70 @@
 <template>
-  <el-form ref="formRef" :model="form" :rules="rules" v-loading="store.state.progressing" label-width="100px">
-    <el-form-item label="公司代號" prop="code">
+  <el-form ref="formRef" :model="form" :rules="rules" v-loading="store.state.progressing" label-width="140px">
+    <el-form-item label="Company ID" prop="code">
       <label v-if="props.type==='view'">{{ form.code }}</label>
       <el-input v-else v-model="form.code" maxlength="10" clearable />
     </el-form-item>
-    <el-form-item label="公司名稱" prop="name">
+    <el-form-item label="Company Name" prop="name">
       <label v-if="props.type==='view'">{{ form.name }}</label>
       <el-input v-else v-model="form.name" clearable />
     </el-form-item>
-    <el-form-item label="公司統編" prop="uniNo">
+    <el-form-item label="VAT Number" prop="uniNo">
       <label v-if="props.type==='view'">{{ form.uniNo }}</label>
       <el-input v-else v-model="form.uniNo" maxlength="10" clearable />
     </el-form-item>
-    <el-form-item label="公司地址" prop="address">
+    <el-form-item label="Company Address" prop="address">
       <label v-if="props.type==='view'">{{ form.address }}</label>
       <el-input v-else v-model="form.address" clearable />
     </el-form-item>
-    <el-form-item label="負責人姓名" prop="principalName">
+    <el-form-item label="Owner Name" prop="principalName">
       <label v-if="props.type==='view'">{{ form.principalName }}</label>
       <el-input v-else v-model="form.principalName" clearable />
     </el-form-item>
-    <el-form-item label="負責人電話" prop="principalPhone">
+    <el-form-item label="Owner Phone" prop="principalPhone">
       <label v-if="props.type==='view'">{{ form.principalPhone }}</label>
       <el-input v-else v-model="form.principalPhone" clearable />
     </el-form-item>
-    <el-form-item label="負責人Email" prop="principalEmail">
+    <el-form-item label="Owner Email" prop="principalEmail">
       <label v-if="props.type==='view'">{{ form.principalEmail }}</label>
       <el-input v-else v-model="form.principalEmail" clearable />
     </el-form-item>
-    <el-form-item label="成立日期" prop="establishDate">
+    <el-form-item label="Establish Date" prop="establishDate">
       <label v-if="props.type==='view'">{{ formatDateYMD(form.establishDate) }}</label>
       <el-date-picker v-else
         v-model="form.establishDate"
         type="date"
         format="YYYY/MM/DD"
         value-format="YYYY-MM-DD"
-        placeholder="請選擇" />
+        placeholder="Please Choose" />
     </el-form-item>
-    <el-form-item label="註銷日期" prop="writeoffDate">
+    <el-form-item label="Write-off Date" prop="writeoffDate">
       <label v-if="props.type==='view'">{{ formatDateYMD(form.writeoffDate) }}</label>
       <el-date-picker v-else
         v-model="form.writeoffDate"
         type="date"
         format="YYYY/MM/DD"
         value-format="YYYY-MM-DD"
-        placeholder="請選擇" />
+        placeholder="Please Choose" />
     </el-form-item>
-    <el-form-item label="備註" prop="remark">
+    <el-form-item label="Remark" prop="remark">
       <label v-if="props.type==='view'">{{ form.remark }}</label>
       <el-input v-else v-model="form.remark" clearable />
     </el-form-item>
-    <el-form-item label="公司網站">
-      <add-item :arrays="form.webItems" label-title="網址" :can-save="props.type!=='view'" ref="web" />
+    <el-form-item label="Company Website">
+      <add-item :arrays="form.webItems" label-title="Website" :can-save="props.type!=='view'" ref="web" />
     </el-form-item>
-    <el-form-item label="公司Email">
+    <el-form-item label="Company Email">
       <add-item :arrays="form.emailItems" label-title="Email" :can-save="props.type!=='view'" keyWord="email" ref="email" />
     </el-form-item>
-    <el-form-item label="公司電話">
-      <add-item :arrays="form.phoneItems" label-title="電話" :can-save="props.type!=='view'" ref="phone" />
+    <el-form-item label="Company Phone">
+      <add-item :arrays="form.phoneItems" label-title="Phone" :can-save="props.type!=='view'" ref="phone" />
     </el-form-item>
-    <el-form-item label="公司傳真">
-      <add-item :arrays="form.faxItems" label-title="傳真" :can-save="props.type!=='view'" ref="fax" />
+    <el-form-item label="Company Fax">
+      <add-item :arrays="form.faxItems" label-title="Fax" :can-save="props.type!=='view'" ref="fax" />
     </el-form-item>
     <div class="text-right">
-      <el-button @click="emit('toggleModal', false)">關閉</el-button>
-      <el-button v-if="props.type!=='view'" type="primary" @click="store.dispatch('saveData', { http, path, form, ref: formRef })">儲存</el-button>
+      <el-button @click="emit('toggleModal', false)">Close</el-button>
+      <el-button v-if="props.type!=='view'" type="primary" @click="store.dispatch('saveData', { http, path, form, ref: formRef })">Save</el-button>
     </div>
   </el-form>
 </template>
@@ -121,38 +121,38 @@ const form = ref({
 const rules = computed(() => {
   return {
     code: [
-      { required: true, message: '請輸入代碼', trigger: 'blur' },
+      { required: true, message: 'Enter  ID', trigger: 'blur' },
       { min: 6, max: 10, message: '長度介於6~10', trigger: 'blur' },
       { validator: onlyAllowLettersAndDigits, trigger: 'blur' }
     ],
     name: [
-      { required: true, message: '請輸入名稱', trigger: 'blur' },
+      { required: true, message: 'Enter Name', trigger: 'blur' },
       { max: 30, message: '最大長度為30', trigger: 'blur' }
     ],
     uniNo: [
-      { required: true, message: '請輸入統一編號', trigger: 'blur' },
+      { required: true, message: 'Enter VAT', trigger: 'blur' },
       { min: 6, max: 10, message: '長度介於6~10', trigger: 'blur' },
       { validator: onlyAllowDigits, trigger: 'blur' }
     ],
     address: [
-      { required: true, message: '請輸入地址', trigger: 'blur' },
+      { required: true, message: 'Enter Address', trigger: 'blur' },
       { max: 255, message: '最大長度為255', trigger: 'blur' }
     ],
     principalName: [
-      { required: true, message: '請輸入姓名', trigger: 'blur' },
+      { required: true, message: 'Enter Name', trigger: 'blur' },
       { max: 30, message: '最大長度為30', trigger: 'blur' }
     ],
     principalPhone: [
-      { required: true, message: '請輸入電話', trigger: 'blur' },
+      { required: true, message: 'Enter Phone', trigger: 'blur' },
       { max: 50, message: '最大長度為50', trigger: 'blur' }
     ],
     principalEmail: [
-      { required: true, message: '請輸入Email', trigger: 'blur' },
+      { required: true, message: 'Enter Email', trigger: 'blur' },
       { max: 255, message: '最大長度為255', trigger: 'blur' },
       { validator: validEmail, trigger: 'blur' }
     ],
     establishDate: [
-      { required: true, message: '請選擇', trigger: 'change' }
+      { required: true, message: 'Please Choose', trigger: 'change' }
     ],
     writeoffDate: [
     ]

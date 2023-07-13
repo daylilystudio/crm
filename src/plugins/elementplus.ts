@@ -83,7 +83,7 @@ export default {
       loading: '載入中',
       noMatch: '無相符資料',
       noData: '無資料',
-      placeholder: '請選擇'
+      placeholder: 'Please Choose'
     },
     dropdown: {
       toggleDropdown: '切換下拉選單'
@@ -91,7 +91,7 @@ export default {
     cascader: {
       noMatch: '無相符資料',
       loading: '載入中',
-      placeholder: '請選擇',
+      placeholder: 'Please Choose',
       noData: '無資料'
     },
     pagination: {
@@ -140,7 +140,7 @@ export default {
       noMatch: '無相符資料',
       noData: '無資料',
       titles: ['列表 1', '列表 2'],
-      filterPlaceholder: '請輸入搜尋內容',
+      filterPlaceholder: 'Enter 搜尋內容',
       noCheckedFormat: '共 {total} 項',
       hasCheckedFormat: '已選 {checked}/{total} 項'
     },

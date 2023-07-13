@@ -4,13 +4,13 @@
       <label v-if="props.type==='view'">{{ form.username }}</label>
       <el-input v-else v-model="form.username" maxlength="50" clearable />
     </el-form-item>
-    <el-form-item label="人員名稱" prop="name">
+    <el-form-item label="人員Name" prop="name">
       <label v-if="props.type==='view'">{{ form.name }}</label>
       <el-input v-else v-model="form.name" clearable />
     </el-form-item>
     <el-form-item label="所屬公司" prop="company.id" v-if="store.state.user.superUser">
       <label v-if="props.type==='view'">{{ form.company.name }}</label>
-      <el-select v-else v-model="form.company.id" placeholder="請選擇" filterable>
+      <el-select v-else v-model="form.company.id" placeholder="Please Choose" filterable>
         <el-option
           v-for="item in store.state.company"
           :key="item.id"
@@ -21,7 +21,7 @@
     </el-form-item>
     <el-form-item label="部門" prop="dept.id">
       <label v-if="props.type==='view'">{{ form.dept?.name }}</label>
-      <el-select v-else v-model="form.dept.id" placeholder="請選擇" filterable>
+      <el-select v-else v-model="form.dept.id" placeholder="Please Choose" filterable>
         <el-option
           v-for="item in dept"
           :key="item.id"
@@ -37,7 +37,7 @@
         type="date"
         format="YYYY/MM/DD"
         value-format="YYYY-MM-DD"
-        placeholder="請選擇" />
+        placeholder="Please Choose" />
     </el-form-item>
     <el-form-item label="離職日" prop="leaveDate">
       <label v-if="props.type==='view'">{{ formatDateYMD(form.leaveDate) }}</label>
@@ -46,7 +46,7 @@
         type="date"
         format="YYYY/MM/DD"
         value-format="YYYY-MM-DD"
-        placeholder="請選擇" />
+        placeholder="Please Choose" />
     </el-form-item>
     <el-form-item v-if="props.type==='add'" label="密碼" prop="password">
       <el-input
@@ -62,8 +62,8 @@
       <el-switch v-else v-model="form.activation" active-text="是" inactive-text="否" />
     </el-form-item>
     <div class="text-right">
-      <el-button @click="emit('toggleModal', false)">關閉</el-button>
-      <el-button v-if="props.type!=='view'" type="primary" @click="store.dispatch('saveData', { http, path, form, ref: formRef })">儲存</el-button>
+      <el-button @click="emit('toggleModal', false)">Close</el-button>
+      <el-button v-if="props.type!=='view'" type="primary" @click="store.dispatch('saveData', { http, path, form, ref: formRef })">Save</el-button>
     </div>
   </el-form>
 </template>
@@ -118,29 +118,29 @@ const form:any = ref({
 const rules = computed(() => {
   return {
     username: [
-      { required: true, message: '請輸入代號', trigger: 'blur' },
+      { required: true, message: 'Enter 代號', trigger: 'blur' },
       { max: 50, message: '最大長度為50', trigger: 'blur' },
       { validator: onlyAllowLettersAndDigits, trigger: 'blur' }
     ],
     name: [
-      { required: true, message: '請輸入名稱', trigger: 'blur' },
+      { required: true, message: 'Enter Name', trigger: 'blur' },
       { max: 30, message: '最大長度為30', trigger: 'blur' }
     ],
     applyDate: [
-      { required: true, message: '請選擇', trigger: 'change' }
+      { required: true, message: 'Please Choose', trigger: 'change' }
     ],
     company: {
       id: [
-        { required: true, message: '請選擇', trigger: 'change' }
+        { required: true, message: 'Please Choose', trigger: 'change' }
       ]
     },
     dept: {
       id: [
-        { required: true, message: '請選擇', trigger: 'change' }
+        { required: true, message: 'Please Choose', trigger: 'change' }
       ]
     },
     password: [
-      { required: true, min: 8, max: 20, message: '請輸入，長度介於8~20', trigger: 'blur' },
+      { required: true, min: 8, max: 20, message: 'Enter ，長度介於8~20', trigger: 'blur' },
       { validator: onlyAllowLettersAndDigits, trigger: 'blur' }
     ]
   }

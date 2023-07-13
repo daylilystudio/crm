@@ -17,5 +17,8 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-explicit-any': ['off']
     // 'semi': [2, 'never']
+  },
+  globals: {
+    require: true
   }
 }

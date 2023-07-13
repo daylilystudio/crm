@@ -4,7 +4,7 @@
       <label v-if="props.type==='view'">{{ form.code }}</label>
       <el-input v-else v-model="form.code" clearable />
     </el-form-item>
-    <el-form-item label="角色名稱" prop="name">
+    <el-form-item label="角色Name" prop="name">
       <label v-if="props.type==='view'">{{ form.name }}</label>
       <el-input v-else v-model="form.name" clearable />
     </el-form-item>
@@ -13,8 +13,8 @@
       <el-switch v-else v-model="form.activation" active-text="是" inactive-text="否" />
     </el-form-item>
     <div class="text-right">
-      <el-button @click="emit('toggleModal', false)">關閉</el-button>
-      <el-button v-if="props.type!=='view'" type="primary" @click="store.dispatch('saveData', { http, path, form, ref: formRef })">儲存</el-button>
+      <el-button @click="emit('toggleModal', false)">Close</el-button>
+      <el-button v-if="props.type!=='view'" type="primary" @click="store.dispatch('saveData', { http, path, form, ref: formRef })">Save</el-button>
     </div>
   </el-form>
 </template>
@@ -56,12 +56,12 @@ const form:any = ref({
 const rules = computed(() => {
   return {
     code: [
-      { required: true, message: '請輸入代號', trigger: 'blur' },
+      { required: true, message: 'Enter 代號', trigger: 'blur' },
       { max: 30, message: '最大長度為30', trigger: 'blur' },
       { validator: onlyAllowLettersAndDigits, trigger: 'blur' }
     ],
     name: [
-      { required: true, message: '請輸入名稱', trigger: 'blur' },
+      { required: true, message: 'Enter Name', trigger: 'blur' },
       { max: 50, message: '最大長度為50', trigger: 'blur' }
     ]
   }

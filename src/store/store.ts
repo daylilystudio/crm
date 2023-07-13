@@ -256,7 +256,7 @@ export const store = createStore<State>({
             ElMessage.error(e.toString())
           })
         } else {
-          ElMessage.error('請檢查欄位是否有誤')
+          ElMessage.error('Please check the fields')
         }
       })
     },
@@ -268,7 +268,10 @@ export const store = createStore<State>({
         beforeClose: async (action, instance, done) => {
           if (action === 'confirm') {
             // test
-            if (store.state.testModel) done()
+            if (store.state.testModel) {
+              done()
+              return
+            }
             // actual
             instance.confirmButtonLoading = true
             instance.confirmButtonText = 'Loading...'
@@ -304,7 +307,7 @@ export const store = createStore<State>({
   },
   getters: {
     actionTitle: state => {
-      const str = state.actionType === 'add' ? '新增' : state.actionType === 'edit' ? '編輯' : state.actionType === 'view' ? '瀏覽' : '權限設定'
+      const str = state.actionType === 'add' ? 'Add' : state.actionType === 'edit' ? '編輯' : state.actionType === 'view' ? '瀏覽' : '權限設定'
       return str
     }
   }

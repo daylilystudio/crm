@@ -2,31 +2,31 @@
   <el-space :size="20" :fill="true" class="w-full px-4">
     <el-card class="box-card" v-loading="store.state.progressing">
       <template #header>
-        <div class="card-header">查詢條件</div>
+        <div class="card-header">Search Filter</div>
       </template>
       <el-form label-position="left">
         <div class="grid sm:gap-x-8 sm:grid-cols-2">
-          <el-form-item label="公司代號" prop="code">
-            <el-input v-model="filterForm.code" placeholder="輸入公司代號" maxlength="10" clearable />
+          <el-form-item label="Company ID" prop="code">
+            <el-input v-model="filterForm.code" placeholder="Enter Company ID" maxlength="10" clearable />
           </el-form-item>
-          <el-form-item label="公司名稱" prop="name">
-            <el-input v-model="filterForm.name" placeholder="輸入公司名稱" clearable />
+          <el-form-item label="Company Name" prop="name">
+            <el-input v-model="filterForm.name" placeholder="Enter Company Name" clearable />
           </el-form-item>
         </div>
-        <el-button v-if="store.state.show.read" :icon="Search" type="primary" @click="store.dispatch('getData', { http, path, data })" class="!flex w-full sm:w-56 mx-auto">點我查詢</el-button>
+        <el-button v-if="store.state.show.read" :icon="Search" type="primary" @click="store.dispatch('getData', { http, path, data })" class="!flex w-full sm:w-56 mx-auto">Search</el-button>
       </el-form>
     </el-card>
     <el-card class="box-card" v-loading="store.state.progressing">
       <template #header>
         <div class="card-header flex justify-between items-center">
-          <span>查詢結果</span>
-          <el-button v-if="store.state.show.create" @click="store.dispatch('action', {type:'add', id:0})" :icon="Plus" type="primary" plain>新增公司</el-button>
+          <span>Result</span>
+          <el-button v-if="store.state.show.create" @click="store.dispatch('action', {type:'add', id:0})" :icon="Plus" type="primary" plain>Add Company</el-button>
         </div>
       </template>
       <el-table :data="store.state.table" :flexible="true" border>
-        <el-table-column prop="code" label="公司代號" />
-        <el-table-column prop="name" label="公司名稱" />
-        <el-table-column label="操作" fixed="right" width="150" align="center">
+        <el-table-column prop="code" label="Company ID" />
+        <el-table-column prop="name" label="Company Name" />
+        <el-table-column label="Operate" fixed="right" width="150" align="center">
           <template #default="scope">
             <el-button-group>
               <el-button v-if="!store.state.show.detail" :icon="Hide" round disabled>無權限</el-button>
@@ -94,4 +94,7 @@ const data = computed(() => {
   }
   return obj
 })
+
+// test
+store.commit('updateTable', [{ code: '1111', name: 'TEST' }])
 </script>

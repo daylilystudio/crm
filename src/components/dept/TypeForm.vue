@@ -2,7 +2,7 @@
   <el-form ref="formRef" :model="form" :rules="rules" v-loading="store.state.progressing" label-width="100px">
     <el-form-item label="所屬公司" prop="company.id" v-if="store.state.user.superUser">
       <label v-if="props.type==='view'">{{ form.company.name }}</label>
-      <el-select v-else v-model="form.company.id" placeholder="請選擇" filterable>
+      <el-select v-else v-model="form.company.id" placeholder="Please Choose" filterable>
         <el-option
           v-for="item in store.state.company"
           :key="item.id"
@@ -24,8 +24,8 @@
       <el-switch v-else v-model="form.top" active-text="是" inactive-text="否" />
     </el-form-item>
     <div class="text-right">
-      <el-button @click="emit('toggleModal', false)">關閉</el-button>
-      <el-button v-if="props.type!=='view'" type="primary" @click="store.dispatch('saveData', { http, path, form, ref: formRef })">儲存</el-button>
+      <el-button @click="emit('toggleModal', false)">Close</el-button>
+      <el-button v-if="props.type!=='view'" type="primary" @click="store.dispatch('saveData', { http, path, form, ref: formRef })">Save</el-button>
     </div>
   </el-form>
 </template>
@@ -69,12 +69,12 @@ const form:any = ref({
 const rules = computed(() => {
   return {
     name: [
-      { required: true, message: '請輸入名稱', trigger: 'blur' },
+      { required: true, message: 'Enter Name', trigger: 'blur' },
       { max: 50, message: '最大長度為50', trigger: 'blur' }
     ],
     company: {
       id: [
-        { required: true, message: '請選擇', trigger: 'change' }
+        { required: true, message: 'Please Choose', trigger: 'change' }
       ]
     }
   }

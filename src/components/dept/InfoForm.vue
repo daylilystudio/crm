@@ -2,7 +2,7 @@
   <el-form ref="formRef" :model="form" :rules="rules" v-loading="store.state.progressing" label-width="100px">
     <el-form-item label="所屬公司" prop="company.id" v-if="store.state.user.superUser">
       <label v-if="props.type==='view'">{{ form.company.name }}</label>
-      <el-select v-else v-model="form.company.id" :disabled="props.type==='edit'" placeholder="請選擇" filterable>
+      <el-select v-else v-model="form.company.id" :disabled="props.type==='edit'" placeholder="Please Choose" filterable>
         <el-option
           v-for="item in store.state.company"
           :key="item.id"
@@ -13,9 +13,9 @@
     </el-form-item>
     <el-form-item label="部門類別" prop="type.id">
       <label v-if="props.type==='view'">{{ form.type?.name }}</label>
-      <el-select v-else v-model="form.type.id" placeholder="請選擇" filterable>
+      <el-select v-else v-model="form.type.id" placeholder="Please Choose" filterable>
         <el-option
-          v-for="item in type"
+          v-for="item in types"
           :key="item.id"
           :label="item.name"
           :value="item.id">
@@ -24,7 +24,7 @@
     </el-form-item>
     <el-form-item label="上位部門" prop="dept.id">
       <label v-if="props.type==='view'">{{ form.upper?.name }}</label>
-      <el-select v-else v-model="form.upper.id" placeholder="請選擇" filterable>
+      <el-select v-else v-model="form.upper.id" placeholder="Please Choose" filterable>
         <el-option
           v-for="item in upper"
           :key="item.id"
@@ -35,7 +35,7 @@
     </el-form-item>
     <el-form-item label="負責人" prop="principal.id">
       <label v-if="props.type==='view'">{{ form.principal?.name }}</label>
-      <el-select v-else v-model="form.principal.id" placeholder="請選擇" filterable>
+      <el-select v-else v-model="form.principal.id" placeholder="Please Choose" filterable>
         <el-option
           v-for="item in principal"
           :key="item.id"
@@ -48,11 +48,11 @@
       <label v-if="props.type==='view'">{{ form.code }}</label>
       <el-input v-else v-model="form.code" maxlength="20" clearable />
     </el-form-item>
-    <el-form-item label="部門名稱" prop="name">
+    <el-form-item label="部門Name" prop="name">
       <label v-if="props.type==='view'">{{ form.name }}</label>
       <el-input v-else v-model="form.name" clearable />
     </el-form-item>
-    <el-form-item label="部門地址" prop="address">
+    <el-form-item label="部門Address" prop="address">
       <label v-if="props.type==='view'">{{ form.address }}</label>
       <el-input v-else v-model="form.address" clearable />
     </el-form-item>
@@ -63,7 +63,7 @@
         type="date"
         format="YYYY/MM/DD"
         value-format="YYYY-MM-DD"
-        placeholder="請選擇" />
+        placeholder="Please Choose" />
     </el-form-item>
     <el-form-item label="註銷日期" prop="writeoffDate">
       <label v-if="props.type==='view'">{{ formatDateYMD(form.writeoffDate) }}</label>
@@ -72,9 +72,9 @@
         type="date"
         format="YYYY/MM/DD"
         value-format="YYYY-MM-DD"
-        placeholder="請選擇" />
+        placeholder="Please Choose" />
     </el-form-item>
-    <el-form-item label="備註" prop="remark">
+    <el-form-item label="Remark" prop="remark">
       <label v-if="props.type==='view'">{{ form.remark }}</label>
       <el-input v-else v-model="form.remark" clearable />
     </el-form-item>
@@ -84,15 +84,15 @@
     <el-form-item label="部門Email">
       <add-item :arrays="form.emailItems" label-title="Email" :can-save="props.type!=='view'" keyWord="email" ref="email" />
     </el-form-item>
-    <el-form-item label="部門電話">
-      <add-item :arrays="form.phoneItems" label-title="電話" :can-save="props.type!=='view'" ref="phone" />
+    <el-form-item label="部門Phone">
+      <add-item :arrays="form.phoneItems" label-title="Phone" :can-save="props.type!=='view'" ref="phone" />
     </el-form-item>
     <el-form-item label="部門傳真">
       <add-item :arrays="form.faxItems" label-title="傳真" :can-save="props.type!=='view'" ref="fax" />
     </el-form-item>
     <div class="text-right">
-      <el-button @click="emit('toggleModal', false)">關閉</el-button>
-      <el-button v-if="props.type!=='view'" type="primary" @click="store.dispatch('saveData', { http, path, form, ref: formRef })">儲存</el-button>
+      <el-button @click="emit('toggleModal', false)">Close</el-button>
+      <el-button v-if="props.type!=='view'" type="primary" @click="store.dispatch('saveData', { http, path, form, ref: formRef })">Save</el-button>
     </div>
   </el-form>
 </template>
@@ -158,36 +158,36 @@ const form:any = ref({
 const rules = computed(() => {
   return {
     code: [
-      { required: true, message: '請輸入代碼', trigger: 'blur' },
+      { required: true, message: 'Enter  ID', trigger: 'blur' },
       { max: 20, message: '最大長度為20', trigger: 'blur' },
       { validator: onlyAllowLettersAndDigits, trigger: 'blur' }
     ],
     name: [
-      { required: true, message: '請輸入名稱', trigger: 'blur' },
+      { required: true, message: 'Enter Name', trigger: 'blur' },
       { max: 50, message: '最大長度為50', trigger: 'blur' }
     ],
     address: [
-      { required: true, message: '請輸入地址', trigger: 'blur' },
+      { required: true, message: 'Enter Address', trigger: 'blur' },
       { max: 255, message: '最大長度為255', trigger: 'blur' }
     ],
     establishDate: [
-      { required: true, message: '請選擇', trigger: 'change' }
+      { required: true, message: 'Please Choose', trigger: 'change' }
     ],
     company: {
       id: [
-        { required: true, message: '請選擇', trigger: 'change' }
+        { required: true, message: 'Please Choose', trigger: 'change' }
       ]
     },
     type: {
       id: [
-        { required: true, message: '請選擇', trigger: 'change' }
+        { required: true, message: 'Please Choose', trigger: 'change' }
       ]
     }
   }
 })
 
 // get 部門類別
-const type: any = ref([])
+const types: any = ref([])
 // get 上位部門
 const upper: any = ref([])
 // get 負責人
@@ -211,7 +211,7 @@ onBeforeMount(async () => {
         }
         const params: any = { companyId: val }
         http.get('/dept/type/option', { params }).then(res => {
-          type.value = res.data
+          types.value = res.data
         }).catch(e => {
           ElMessage.error(e.toString())
         })

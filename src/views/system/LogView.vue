@@ -2,11 +2,11 @@
   <el-space :size="20" :fill="true" class="w-full px-4">
     <el-card class="box-card" v-loading="store.state.progressing">
       <template #header>
-        <div class="card-header">查詢條件</div>
+        <div class="card-header">Search Filter</div>
       </template>
       <el-form ref="filterFormRef" :rules="rules" :model="filterForm" label-position="left">
         <div class="grid sm:gap-x-8 sm:grid-cols-2">
-          <el-form-item label="操作期間" prop="dateStart">
+          <el-form-item label="Operate期間" prop="dateStart">
             <el-date-picker
               v-model="filterForm.dateStart"
               type="date"
@@ -33,26 +33,26 @@
               v-model="filterForm.patten">
             </el-cascader>
           </el-form-item>
-          <el-form-item label="操作人員" prop="name">
-            <el-input v-model="filterForm.name" placeholder="輸入操作人員" clearable />
+          <el-form-item label="Operate人員" prop="name">
+            <el-input v-model="filterForm.name" placeholder="Enter Operate人員" clearable />
           </el-form-item>
         </div>
-        <el-button v-if="store.state.show.read" :icon="Search" type="primary" @click="getData(filterFormRef)" class="!flex w-full sm:w-56 mx-auto">點我查詢</el-button>
+        <el-button v-if="store.state.show.read" :icon="Search" type="primary" @click="getData(filterFormRef)" class="!flex w-full sm:w-56 mx-auto">Search</el-button>
       </el-form>
     </el-card>
     <el-card class="box-card" v-loading="store.state.progressing">
       <template #header>
         <div class="card-header flex justify-between items-center">
-          <span>查詢結果</span>
+          <span>Result</span>
         </div>
       </template>
       <el-tabs v-model="activeTab">
         <el-tab-pane label="🦄 異 動 資 料" name="excute">
           <el-table :data="store.state.table" :flexible="true" border>
-            <el-table-column prop="opTime" label="操作時間">
+            <el-table-column prop="opTime" label="Operate時間">
               <template #default="scope">{{ formatDateYMDhms(scope.row.opTime) }}</template>
             </el-table-column>
-            <el-table-column prop="opName" label="操作人員" />
+            <el-table-column prop="opName" label="Operate人員" />
             <el-table-column prop="pattenName" label="功能" />
             <el-table-column prop="permission" label="動作">
               <template #default="scope">{{ permissionFilters(scope.row.permission) }}</template>
@@ -82,10 +82,10 @@
         </el-tab-pane>
         <el-tab-pane label="👻 查 詢 資 料" name="query">
           <el-table :data="store.state.tableQ" :flexible="true" border>
-            <el-table-column prop="opTime" label="操作時間">
+            <el-table-column prop="opTime" label="Operate時間">
               <template #default="scope">{{ formatDateYMDhms(scope.row.opTime) }}</template>
             </el-table-column>
-            <el-table-column prop="opName" label="操作人員" />
+            <el-table-column prop="opName" label="Operate人員" />
             <el-table-column prop="pattenName" label="功能" />
             <el-table-column prop="permission" label="動作">
               <template #default="scope">{{ permissionFilters(scope.row.permission) }}</template>

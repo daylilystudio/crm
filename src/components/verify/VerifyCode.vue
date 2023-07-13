@@ -148,10 +148,10 @@ const checkCode = () => {
     isEnd.value = true
     emit('success', this)
   } else if (inputValue.value === '') {
-    ElMessage.error('未輸入驗證碼')
+    ElMessage.error('Not Entered Verify Code')
     setCode()
   } else {
-    ElMessage.error('驗證碼錯誤')
+    ElMessage.error('Wrong Verify Code')
     setCode()
   }
 }
